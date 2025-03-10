@@ -82,7 +82,7 @@ nav {
     .nav-links {
         display: none;
         position: fixed;
-        top: 60px;
+        top: 0;
         left: 0;
         right: 0;
         background: white;
@@ -99,6 +99,10 @@ nav {
 
     .hamburger {
         display: block;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        z-index: 1001;
     }
 
     .hamburger.active span:nth-child(1) {
