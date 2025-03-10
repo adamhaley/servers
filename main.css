@@ -9,7 +9,6 @@
 
 /* Base Styles */
 * {
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -121,7 +120,7 @@ nav {
 
 /* Common Header Styles */
 .page-header {
-    padding: 8rem 2rem 4rem;
+    padding: 12rem 2rem 4rem;
     background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     color: white;
     text-align: center;
