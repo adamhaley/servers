@@ -59,6 +59,11 @@
                     <img src="graphics/logo-horizontal.png" alt="AH Servers.net Logo">
                 </a>
             </div>
+            <button class="hamburger" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
@@ -67,6 +72,34 @@
             </div>
         </div>
     </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
 
     <header class="page-header">
         <h1>Our Hosting Services</h1>
@@ -79,16 +112,16 @@
             <p>We offer scalable hosting solutions designed to meet the needs of any business, from small startups to large enterprises. Our infrastructure is built on cutting-edge technology to ensure maximum performance and reliability.</p>
             
             <div class="feature-grid">
-                <div class="feature-item">
-                    <h3>Shared Hosting</h3>
+                <div class="feature-item" id="starter">
+                    <h3>Starter Plan</h3>
                     <p>Perfect for small businesses and personal websites. Get started quickly with our easy-to-use control panel and one-click installations.</p>
                 </div>
-                <div class="feature-item">
-                    <h3>VPS Hosting</h3>
+                <div class="feature-item" id="entree">
+                    <h3>Entree Plan</h3>
                     <p>Dedicated resources and enhanced performance for growing businesses. Full root access and guaranteed resources.</p>
                 </div>
-                <div class="feature-item">
-                    <h3>Dedicated Servers</h3>
+                <div class="feature-item" id="buffet">
+                    <h3>Buffet Plan</h3>
                     <p>Maximum performance and control for high-traffic websites and applications. Custom configurations available.</p>
                 </div>
             </div>
@@ -131,9 +164,9 @@
             <div class="footer-section">
                 <h3>Services</h3>
                 <ul>
-                    <li><a href="services.html#shared">Shared Hosting</a></li>
-                    <li><a href="services.html#vps">VPS Hosting</a></li>
-                    <li><a href="services.html#dedicated">Dedicated Servers</a></li>
+                    <li><a href="services.html#starter">Starter Plan</a></li>
+                    <li><a href="services.html#entree">Entree Plan</a></li>
+                    <li><a href="services.html#buffet">Buffet Plan</a></li>
                     <li><a href="services.html#ssl">SSL Certificates</a></li>
                 </ul>
             </div>

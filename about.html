@@ -81,6 +81,11 @@
                     <img src="graphics/logo-horizontal.png" alt="AH Servers.net Logo">
                 </a>
             </div>
+            <button class="hamburger" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
@@ -89,6 +94,34 @@
             </div>
         </div>
     </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
 
     <header class="page-header">
         <h1>About AH Servers.net</h1>
@@ -157,9 +190,9 @@
             <div class="footer-section">
                 <h3>Services</h3>
                 <ul>
-                    <li><a href="services.html#shared">Shared Hosting</a></li>
-                    <li><a href="services.html#vps">VPS Hosting</a></li>
-                    <li><a href="services.html#dedicated">Dedicated Servers</a></li>
+                    <li><a href="services.html#starter">Starter Plan</a></li>
+                    <li><a href="services.html#entree">Entree Plan</a></li>
+                    <li><a href="services.html#buffet">Buffet Plan</a></li>
                     <li><a href="services.html#ssl">SSL Certificates</a></li>
                 </ul>
             </div>
