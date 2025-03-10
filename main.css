@@ -23,7 +23,6 @@ body {
 /* Navigation */
 nav {
     background-color: white;
-    padding: 0.5rem 2rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
@@ -40,12 +39,11 @@ nav {
 }
 
 .logo-container {
-    width: 300px;
+    height:150px;
 }
 
 .logo-container img {
-    width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .nav-links {
