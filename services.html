@@ -60,11 +60,6 @@
                     <img src="graphics/logo-horizontal.png" alt="AH Servers.net Logo">
                 </a>
             </div>
-            <button class="hamburger" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
@@ -76,28 +71,43 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
+            const logo = document.querySelector('.logo-container');
             const navLinks = document.querySelector('.nav-links');
             
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navLinks.classList.toggle('active');
-            });
+            // Only add click handlers on mobile
+            if (window.innerWidth <= 768) {
+                logo.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default link behavior on mobile
+                    logo.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
 
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
-                    hamburger.classList.remove('active');
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!logo.contains(event.target) && !navLinks.contains(event.target)) {
+                        logo.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    }
+                });
+
+                // Close menu when clicking a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        logo.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+
+            // Update handlers when window is resized
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    logo.style.cursor = 'pointer';
+                } else {
+                    logo.style.cursor = 'default';
+                    logo.classList.remove('active');
                     navLinks.classList.remove('active');
                 }
-            });
-
-            // Close menu when clicking a link
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                });
             });
         });
     </script>
