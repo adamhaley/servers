@@ -41,10 +41,14 @@ nav {
 
 .logo-container {
     height: 150px;
+    margin: 0;
+    padding: 0;
 }
 
 .logo-container img {
     height: 100%;
+    margin:0;
+    padding: 0;
 }
 
 .nav-links {
