@@ -100,8 +100,8 @@ nav {
     .hamburger {
         display: block;
         position: absolute;
-        top: 2rem;
-        right: 2rem;
+        top: 1rem;
+        right: 1rem;
         z-index: 1001;
     }
 
