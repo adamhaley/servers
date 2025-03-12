@@ -229,10 +229,53 @@ nav {
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.3s;
+    text-decoration: none;
+    color: var(--text-color);
+    display: block;
 }
 
 .service-card:hover {
     transform: translateY(-5px);
+    text-decoration: none;
+}
+
+.service-card * {
+    text-decoration: none;
+}
+
+.service-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.service-card .price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.service-card .features {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.service-card .features li {
+    margin: 0.5rem 0;
+}
+
+.service-card .cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+
+.service-card:hover .cta-button {
+    background-color: var(--secondary-color);
 }
 
 @media (max-width: 768px) {
