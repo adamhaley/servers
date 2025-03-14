@@ -7,6 +7,11 @@
     <title>AH Servers.net - Professional Web Hosting Solutions</title>
     <link rel="stylesheet" href="main.css">
     <style>
+        /* Global Styles */
+        html {
+            scroll-padding-top: 120px; /* Add padding for fixed nav */
+        }
+
         /* Hero Section */
         .hero {
             position: relative;
@@ -162,6 +167,12 @@
         .features li {
             margin: 0.5rem 0;
         }
+
+        .anchor {
+            position: relative;
+            top: -20px;
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
@@ -301,7 +312,8 @@
         });
     </script>
 
-    <section class="services" id="pricing">
+    <div class="anchor" id="pricing"></div>
+    <section class="services">
         <div class="services-container">
             <a href="https://hosting.ahservers.net/order.php?step=1&productGroup=1&product=1" class="service-card">
                 <h3>Starter</h3>
