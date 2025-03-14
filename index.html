@@ -465,21 +465,35 @@
     </footer>
 
     <script>
-        // Preload the hero image
+        // Preload all hero images
         window.addEventListener('load', function() {
-            const heroImage = new Image();
-            heroImage.src = 'graphics/hero-server-room.png';
+            // Array of all hero images to preload
+            const heroImages = [
+                'graphics/hero-server-room.png',    // Homepage hero
+                'graphics/hero-networking.jpg',      // Services page hero
+                'graphics/hero-server-room.jpg',    // About page hero
+                'graphics/hero-code.jpg'            // Contact page hero
+            ];
             
-            heroImage.onload = function() {
-                // Once image is loaded, fade out the loading overlay
-                const loadingOverlay = document.querySelector('.loading-overlay');
-                loadingOverlay.classList.add('fade-out');
-                
-                // Remove the overlay from DOM after animation
-                setTimeout(() => {
-                    loadingOverlay.remove();
-                }, 500);
-            };
+            // Create image objects and track loading progress
+            let loadedCount = 0;
+            const totalImages = heroImages.length;
+            
+            heroImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => {
+                    loadedCount++;
+                    // When first image (homepage hero) is loaded, remove the loading overlay
+                    if (src === 'graphics/hero-server-room.png') {
+                        const loadingOverlay = document.querySelector('.loading-overlay');
+                        loadingOverlay.classList.add('fade-out');
+                        setTimeout(() => {
+                            loadingOverlay.remove();
+                        }, 500);
+                    }
+                };
+            });
         });
     </script>
 </body>
