@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="main.css">
     <style>
         /* Services Page Specific Styles */
+        html {
+            scroll-padding-top: 120px; /* Increased padding for fixed nav */
+        }
+
         .page-header {
             position: relative;
             background-image: url('graphics/hero-networking.jpg');
@@ -41,7 +45,7 @@
 
         .service-section {
             margin-bottom: 4rem;
-            padding: 2rem;
+            padding: 3rem 2rem 2rem; /* Increased top padding */
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -74,6 +78,12 @@
             .feature-grid {
                 grid-template-columns: 1fr;
             }
+        }
+
+        .anchor {
+            position: relative;
+            top: -20px;
+            visibility: hidden;
         }
     </style>
 </head>
@@ -143,6 +153,7 @@
     </header>
 
     <main class="services-content">
+        <div class="anchor" id="web-hosting"></div>
         <div class="service-section">
             <h2>Web Hosting Solutions</h2>
             <p>We offer scalable hosting solutions designed to meet the needs of any business, from small startups to large enterprises. Our infrastructure is built on cutting-edge technology to ensure maximum performance and reliability.</p>
@@ -163,6 +174,7 @@
             </div>
         </div>
 
+        <div class="anchor" id="web-design"></div>
         <div class="service-section">
             <h2>Web Design Services</h2>
             <p>Transform your online presence with our professional web design services. We create beautiful, responsive websites that engage your audience and drive results.</p>
@@ -183,6 +195,7 @@
             </div>
         </div>
 
+        <div class="anchor" id="domain-registration"></div>
         <div class="service-section">
             <h2>Domain Name Registration</h2>
             <p>Secure your perfect domain name and establish your online identity. We offer competitive pricing and a wide selection of domain extensions.</p>
@@ -203,6 +216,7 @@
             </div>
         </div>
 
+        <div class="anchor" id="custom-programming"></div>
         <div class="service-section">
             <h2>Custom Programming</h2>
             <p>Need a custom solution? Our experienced developers can build tailored applications and features to meet your specific requirements.</p>
@@ -260,10 +274,10 @@
             <div class="footer-section">
                 <h3>Services</h3>
                 <ul>
-                    <li><a href="services.html">Web Hosting</a></li>
-                    <li><a href="services.html">Domain Name Registration</a></li>
-                    <li><a href="services.html">Web Design</a></li>
-                    <li><a href="services.html">Custom Programming</a></li>
+                    <li><a href="services.html#web-hosting">Web Hosting</a></li>
+                    <li><a href="services.html#domain-registration">Domain Name Registration</a></li>
+                    <li><a href="services.html#web-design">Web Design</a></li>
+                    <li><a href="services.html#custom-programming">Custom Programming</a></li>
                 </ul>
             </div>
             <div class="footer-section">
