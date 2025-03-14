@@ -344,6 +344,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.hero-slide');
             const navButtons = document.querySelectorAll('.hero-nav-button');
+            const ctaButtons = document.querySelectorAll('.hero-content .cta-button');
             let currentSlide = 0;
             let slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
 
@@ -365,6 +366,21 @@
                     clearInterval(slideInterval); // Reset timer when manually changing slides
                     goToSlide(index);
                     slideInterval = setInterval(nextSlide, 5000); // Restart timer
+                });
+            });
+
+            // Add smooth scroll to CTA buttons
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 });
             });
 
