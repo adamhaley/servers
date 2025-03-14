@@ -9,25 +9,109 @@
     <style>
         /* Hero Section */
         .hero {
-            padding: 12rem 2rem 4rem;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
             color: white;
             text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
             font-size: 1.25rem;
             margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 3;
+        }
+
+        .hero-nav-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .hero-nav-button.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
         }
 
         /* Service Cards */
@@ -77,16 +161,6 @@
 
         .features li {
             margin: 0.5rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .services-container {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -151,12 +225,81 @@
     </script>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Premium Web Hosting Solutions</h1>
-            <p>Fast, secure, and reliable hosting for your business. Get started today with our flexible hosting plans.</p>
-            <a href="#pricing" class="cta-button">View Plans</a>
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('graphics/hero-server-room.jpg')">
+                <div class="hero-content">
+                    <h1>Premium Web Hosting Solutions</h1>
+                    <p>Fast, secure, and reliable hosting for your business. Get started today with our flexible hosting plans.</p>
+                    <a href="#pricing" class="cta-button">View Plans</a>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('graphics/hero-networking.jpg')">
+                <div class="hero-content">
+                    <h1>Enterprise-Grade Infrastructure</h1>
+                    <p>Built on cutting-edge technology to ensure maximum performance and reliability for your applications.</p>
+                    <a href="#pricing" class="cta-button">View Plans</a>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('graphics/hero-code.jpg')">
+                <div class="hero-content">
+                    <h1>Developer-Friendly Hosting</h1>
+                    <p>Advanced tools and features to help you deploy and scale your applications with ease.</p>
+                    <a href="#pricing" class="cta-button">View Plans</a>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('graphics/hero-server-guy.jpg')">
+                <div class="hero-content">
+                    <h1>24/7 Expert Support</h1>
+                    <p>Our dedicated team is always here to help you succeed with your hosting needs.</p>
+                    <a href="#pricing" class="cta-button">View Plans</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-nav">
+            <button class="hero-nav-button active" data-slide="0"></button>
+            <button class="hero-nav-button" data-slide="1"></button>
+            <button class="hero-nav-button" data-slide="2"></button>
+            <button class="hero-nav-button" data-slide="3"></button>
         </div>
     </section>
+
+    <script>
+        // Hero Slider functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const navButtons = document.querySelectorAll('.hero-nav-button');
+            let currentSlide = 0;
+            let slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+            function nextSlide() {
+                goToSlide((currentSlide + 1) % slides.length);
+            }
+
+            function goToSlide(n) {
+                slides[currentSlide].classList.remove('active');
+                navButtons[currentSlide].classList.remove('active');
+                currentSlide = n;
+                slides[currentSlide].classList.add('active');
+                navButtons[currentSlide].classList.add('active');
+            }
+
+            // Add click handlers to navigation buttons
+            navButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    clearInterval(slideInterval); // Reset timer when manually changing slides
+                    goToSlide(index);
+                    slideInterval = setInterval(nextSlide, 5000); // Restart timer
+                });
+            });
+
+            // Pause slider on hover
+            const heroSection = document.querySelector('.hero');
+            heroSection.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            heroSection.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        });
+    </script>
 
     <section class="services" id="pricing">
         <div class="services-container">
